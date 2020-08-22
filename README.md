@@ -2,10 +2,14 @@
 
 > Um sistema que abre um arquivo .CSV direto do console e retorna funções com análises obtidas do arquivo.
 
-  O projeto tem como objetivo, análisar um arquivo CSV que seja capaz de retornar informações dos dados
-inseridos previamente, e mostrar de forma clara, o que essas informações acrescentam na tomada de decisão.
-  Foi criado um arquivo CSV simples, com dados não complexos, apenas para o fim didático, sendo possível retornar
-algumas informações expecíficas.
+ O programa deve ler um arquivo CSV contendo as colunas RA, P1, P2 e Trabalho. Ao ler o arquivo, o programa 
+deve retornar algumas análises como: 
+- Total de Alunos Registrados;
+- A média de cada aluno;
+- A média total da sala;
+- Mostrar alunos que precisarão de recuperação;
+
+Se o programa não encontrar o arquivo CSV ele deve retornar uma mensagem de erro.
 
 # Tecnologias Utilizadas
 * **_PyCharm;_**
@@ -31,14 +35,16 @@ RA, Nome, P1, P2, Trabalho
 
 ### Função que retorna a média final de todos os alunos.
 ```
-def mediaTotal(doc):
-    print('=' * 45)
-    contador = doc['Média'].count()
-    soma = sum(doc['Média'])
-    media = round(soma / contador, 1)
-    print('Média de Desempenho da Sala: {}'.format(media))
+@staticmethod
+    def MediaAlunos(doc):
+        print('=' * 45)
+        print('Média final de Todos os Alunos:')
+        # Cria a coluna 'Média'.
+        doc['Média'] = round((doc['P1'] + doc['P2'] + doc['Trabalho']) / 3, 1)
+        # Retorna o nome do aluno e sua média correspondente.
+        print(doc[['Nome', 'Média']])
 ```
-![Função Média Final](https://github.com/ThiagoLozano/Analise-de-Dados-Escolares/blob/master/Screenshot/Media_total.PNG)
+![Função Média Final](https://github.com/ThiagoLozano/Analise-de-Dados-Escolares/blob/master/Screenshot/Funcao.PNG)
 
 # Bibliotecas e Configurações
 
